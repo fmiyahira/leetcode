@@ -1,29 +1,17 @@
 class Solution {
   List<int> twoSum(List<int> nums, int target) {
-    int? index1;
-    int? index2;
+    Map<int, int> mapNumbers = <int, int>{};
 
     for (int i = 0; i < nums.length; i++) {
-        int currentNum = nums[i];
-        int targetTemp = target - currentNum;
+        int remains = target - nums[i];
 
-        index1 = i;
-        for (int i2 = 0; i2 < nums.length; i2++) {
-            if (i == i2) {
-                continue;
-            }
-
-            if (targetTemp == nums[i2]) {
-                index2 = i2;
-                break;
-            }
+        if (mapNumbers.containsKey(remains)) {
+            return [i, mapNumbers[remains]!];
         }
 
-        if (index2 != null) {
-            break;
-        }
+        mapNumbers[nums[i]] = i;
     }
 
-    return [index1!, index2!];
+    return [];
   }
 }
